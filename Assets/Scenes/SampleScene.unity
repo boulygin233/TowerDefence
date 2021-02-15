@@ -228,6 +228,8 @@ GameObject:
   - component: {fileID: 912253352}
   - component: {fileID: 912253351}
   - component: {fileID: 912253350}
+  - component: {fileID: 912253354}
+  - component: {fileID: 912253355}
   m_Layer: 0
   m_Name: Sphere
   m_TagString: Untagged
@@ -242,12 +244,12 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 912253349}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f76b788cee556314e849eb6deee0e2e7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Speed: 2
+  m_Speed: 5
   m_Target: {x: 100, y: 100, z: 100}
 --- !u!23 &912253351
 MeshRenderer:
@@ -312,6 +314,43 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &912253354
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 912253349}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 417e003e7da02a74f801167b4b5e2941, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Angle_Speed_1: 60
+  m_Angle_Speed_2: 30
+  m_Radius: 1
+  m_Angle_1: 0
+  m_Angle_2: 0
+--- !u!114 &912253355
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 912253349}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 002b29cf0d227684babc3f740867e6d3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Speed: {x: 3, y: 0, z: 0}
+  m_Weight: 1
+  m_Start: {x: 0, y: 0, z: 0}
+  m_Diam: 1
+  gravity_Weight: 1000
+  gravity_G: 0.000667
+  gravity_Position: {x: 50, y: 0, z: 1}
+  gravity_Diam: 2
 --- !u!1 &963194225
 GameObject:
   m_ObjectHideFlags: 0
@@ -363,7 +402,7 @@ Camera:
     height: 1
   near clip plane: 0.3
   far clip plane: 1000
-  field of view: 60
+  field of view: 86.7
   orthographic: 0
   orthographic size: 5
   m_Depth: -1
@@ -388,10 +427,10 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 963194225}
-  m_LocalRotation: {x: -0.056788355, y: 0.049558192, z: 0.04845854, w: 0.99597734}
-  m_LocalPosition: {x: 0, y: 1, z: -10}
+  m_LocalRotation: {x: 0.5288865, y: 0.008884315, z: 0.0020622574, w: 0.84864354}
+  m_LocalPosition: {x: -0.35, y: 9.65, z: -3.77}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: -6.772, y: 5.386, z: 5.252}
+  m_LocalEulerAnglesHint: {x: 63.849, y: 2.244, z: 1.677}

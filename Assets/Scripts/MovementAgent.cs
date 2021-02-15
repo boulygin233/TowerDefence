@@ -4,11 +4,12 @@ using UnityEngine;
 
 public class MovementAgent : MonoBehaviour
 {
-    [SerializeField]
-    private float m_Speed;
-    [SerializeField]
-    private Vector3 m_Target;
+    [SerializeField] private float m_Speed;
+    [SerializeField] private Vector3 m_Target;
     private const float TOLERANCE = 0.1f;
+
+    float smooth = 5.0f;
+    float tiltAngle = 60.0f;
 
     // Update is called once per frame
     void Update()
@@ -18,7 +19,6 @@ public class MovementAgent : MonoBehaviour
         {
             return;
         }
-
         Vector3 dir = (m_Target - transform.position).normalized;
         Vector3 delta = dir * (m_Speed * Time.deltaTime);
         transform.Translate(delta);
