@@ -27,11 +27,11 @@ public class MovementInGravityAgent : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    /*void Update()
     {   
         /*gravity.transform.position = gravity_Position;
         gravity.transform.localScale = new Vector3(gravity_Diam, gravity_Diam, gravity_Diam);
-        transform.localScale = new Vector3(m_Diam, m_Diam, m_Diam);*/
+        transform.localScale = new Vector3(m_Diam, m_Diam, m_Diam);
         
         Vector3 acceleration = gravity_G * gravity_Weight * (gravity_Position - transform.position) /
                                Mathf.Pow((gravity_Position - transform.position).magnitude, 3);
@@ -47,15 +47,45 @@ public class MovementInGravityAgent : MonoBehaviour
         /*Vector3 dir = (target - transform.position).normalized;
         Vector3 delta = dir * (m_Speed.magnitude * Time.deltaTime);
         */
+    /*float distance = (gravity_Position - transform.position).magnitude;
+     if (distance - gravity_Diam * 0.5f - m_Diam * 0.5f < TOLERANCE)
+    {
+        m_Speed = dir * 100;
+    }
+    
+    m_Speed += acceleration * Time.deltaTime;
+    //transform.Translate(delta);
+    transform.position = target;
+}*/
+
+    private void FixedUpdate()
+    {
+        /*gravity.transform.position = gravity_Position;
+        gravity.transform.localScale = new Vector3(gravity_Diam, gravity_Diam, gravity_Diam);
+        transform.localScale = new Vector3(m_Diam, m_Diam, m_Diam);*/
+
+        Vector3 acceleration = gravity_G * gravity_Weight * (gravity_Position - transform.position) /
+                               Mathf.Pow((gravity_Position - transform.position).magnitude, 3);
+
+        if (acceleration.magnitude > ACCELERATION_LIMIT)
+        {
+            acceleration = acceleration.normalized * ACCELERATION_LIMIT;
+        }
+
+        Vector3 target = transform.position + m_Speed * Time.deltaTime + acceleration *
+            (Mathf.Pow(Time.deltaTime, 2) * 0.5f);
+
+        /*Vector3 dir = (target - transform.position).normalized;
+        Vector3 delta = dir * (m_Speed.magnitude * Time.deltaTime);
+        */
         /*float distance = (gravity_Position - transform.position).magnitude;
          if (distance - gravity_Diam * 0.5f - m_Diam * 0.5f < TOLERANCE)
         {
             m_Speed = dir * 100;
         }*/
-        
+
         m_Speed += acceleration * Time.deltaTime;
         //transform.Translate(delta);
         transform.position = target;
     }
-    
 }
