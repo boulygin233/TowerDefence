@@ -36,7 +36,7 @@ namespace Field
 
         private void Update()
         {
-            if (m_Grid == null || m_Camera == null)
+            /*if (m_Grid == null || m_Camera == null)
             {
                 return;
             }
@@ -58,7 +58,7 @@ namespace Field
                 int x = (int) (difference.x / m_NodeSize);
                 int z = (int) (difference.z / m_NodeSize);
                 Debug.Log(x + " " + z);
-            }
+            }*/
         }
 
         private void OnDrawGizmos()

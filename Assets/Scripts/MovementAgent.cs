@@ -8,10 +8,11 @@ public class MovementAgent : MonoBehaviour
     [SerializeField] private Vector3 m_Target;
     private const float TOLERANCE = 0.1f;
 
-    float smooth = 5.0f;
-    float tiltAngle = 60.0f;
-
-    // Update is called once per frame
+    public void SetTarget(Vector3 target)
+    {
+        m_Target = target;
+    }
+    
     void Update()
     {
         float distance = (m_Target - transform.position).magnitude;
