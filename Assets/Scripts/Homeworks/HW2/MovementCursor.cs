@@ -11,7 +11,26 @@ namespace Field
         [SerializeField] private GameObject m_Cursor;
         [SerializeField] private float m_NodeSize;
 
+        private Camera m_Camera;
+
+        private Vector3 m_Offset;
+
         private void OnValidate()
+        {
+            float width = m_GridWidth * m_NodeSize;
+            float height = m_GridHeight * m_NodeSize;
+
+            // Default plane size is 10 by 10
+            transform.localScale = new Vector3(
+                width * 0.1f,
+                1f,
+                height * 0.1f);
+            
+            m_Offset = transform.position -
+                       (new Vector3(width, 0f, height) * 0.5f);
+        }
+
+        private void Awake()
         {
             float width = m_GridWidth * m_NodeSize;
             float height = m_GridHeight * m_NodeSize;
@@ -24,14 +43,7 @@ namespace Field
 
             m_Offset = transform.position -
                        (new Vector3(width, 0f, height) * 0.5f);
-        }
-
-        private Camera m_Camera;
-
-        private Vector3 m_Offset;
-
-        private void Awake()
-        {
+            
             m_Camera = Camera.main;
             m_Cursor = GameObject.CreatePrimitive(PrimitiveType.Sphere);
             m_Cursor.transform.localScale = new Vector3(0.4f, 0.4f, 0.4f);
@@ -66,7 +78,7 @@ namespace Field
                 int x = (int) (difference.x / m_NodeSize);
                 int z = (int) (difference.z / m_NodeSize);
                 Debug.Log(x + " " + z);
-                Vector3 target = new Vector3(x + m_NodeSize * 0.5f, 0f, z + m_NodeSize * 0.5f)
+                Vector3 target = new Vector3((x + 0.5f) * m_NodeSize , 0f, (z + 0.5f) * m_NodeSize )
                                  + m_Offset;
                 m_Cursor.transform.position = target;
                 if (Input.GetMouseButtonDown(0))
