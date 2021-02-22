@@ -10,6 +10,7 @@ namespace Field
         [SerializeField] private int m_GridHeight;
         [SerializeField] private GameObject m_Cursor;
         [SerializeField] private float m_NodeSize;
+        [SerializeField] private Vector3 m_Position;
 
         private Camera m_Camera;
 
@@ -25,7 +26,7 @@ namespace Field
                 width * 0.1f,
                 1f,
                 height * 0.1f);
-            
+            transform.position = m_Position;
             m_Offset = transform.position -
                        (new Vector3(width, 0f, height) * 0.5f);
         }
@@ -40,7 +41,7 @@ namespace Field
                 width * 0.1f,
                 1f,
                 height * 0.1f);
-
+            transform.position = m_Position;
             m_Offset = transform.position -
                        (new Vector3(width, 0f, height) * 0.5f);
             
