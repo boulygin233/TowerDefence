@@ -1,18 +1,24 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
-public class Node : MonoBehaviour
+namespace Field
 {
-    // Start is called before the first frame update
-    void Start()
+    public class Node
     {
+        public Vector3 Position;
         
-    }
+        public Node NextNode;
+        public bool IsOccupied;
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+        public float PathWeight;
+
+        public Node(Vector3 position)
+        {
+            Position = position;
+        }
+
+        public void ResetWeight()
+        {
+            PathWeight = float.MaxValue;
+        }
     }
 }
