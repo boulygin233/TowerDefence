@@ -1,7 +1,7 @@
-using Field;
+﻿using Field;
 using UnityEngine;
 
-namespace Unit
+namespace Enemy
 {
     public class GridMovementAgent : MonoBehaviour
     {
