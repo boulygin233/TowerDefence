@@ -11,6 +11,7 @@ namespace Field
         [SerializeField] private Vector2Int m_TargetCoordinate;
         [SerializeField] private Vector2Int m_StartCoordinate;
         [SerializeField] private GameObject m_Cursor;
+        private Renderer CursorRenderer;
         public Vector2Int targetCoordinate => m_TargetCoordinate;
         public Vector2Int startCoordinate => m_StartCoordinate;
 
@@ -39,7 +40,7 @@ namespace Field
 
             m_Offset = transform.position -
                        (new Vector3(width, 0f, height) * 0.5f);
-            m_Grid = new Grid(m_GridWidth, m_GridHeight, m_Offset, m_NodeSize, m_TargetCoordinate);
+            m_Grid = new Grid(m_GridWidth, m_GridHeight, m_Offset, m_NodeSize, m_TargetCoordinate, m_StartCoordinate);
         }
 
         private void Awake()
@@ -57,12 +58,12 @@ namespace Field
 
             m_Offset = transform.position -
                        (new Vector3(width, 0f, height) * 0.5f);
-            m_Grid = new Grid(m_GridWidth, m_GridHeight, m_Offset, m_NodeSize, m_TargetCoordinate);
+            m_Grid = new Grid(m_GridWidth, m_GridHeight, m_Offset, m_NodeSize, m_TargetCoordinate, m_StartCoordinate);
             
             m_Cursor = GameObject.CreatePrimitive(PrimitiveType.Sphere);
             m_Cursor.transform.localScale = new Vector3(0.4f, 0.4f, 0.4f);
-            var coursorRenderer = m_Cursor.GetComponent<Renderer>();
-            coursorRenderer.material.SetColor("_Color", Color.green);
+            CursorRenderer = m_Cursor.GetComponent<Renderer>();
+            CursorRenderer.material.SetColor("_Color", Color.green);
         }
 
         private void Update()
@@ -98,7 +99,7 @@ namespace Field
             }*/
             if (Physics.Raycast(ray, out RaycastHit hit))
             {
-                if (hit.transform != transform)
+                if (hit.transform != transform && hit.transform != m_Cursor.transform)
                 {   
                     m_Cursor.SetActive(false);
                     return;
@@ -111,14 +112,30 @@ namespace Field
 
                 int x = (int) (difference.x / m_NodeSize);
                 int z = (int) (difference.z / m_NodeSize);
+                Vector2Int coordinate = new Vector2Int(x, z);
                 Vector3 target = new Vector3((x + 0.5f) * m_NodeSize , 0f, (z + 0.5f) * m_NodeSize )
                                  + m_Offset;
                 m_Cursor.transform.position = target;
+                
+                Node node = m_Grid.GetNode(coordinate);
+                m_Grid.TryOccupyNode(coordinate);
+                if (node.m_OccupationAvailability == OccupationAvailability.CanOccupy)
+                {
+                    CursorRenderer.material.SetColor("_Color", Color.green);
+                }
+                if (node.m_OccupationAvailability == OccupationAvailability.CanNotOccupy)
+                {
+                    CursorRenderer.material.SetColor("_Color", Color.red);
+                }
+                
                 if (Input.GetMouseButtonDown(0))
                 {
-                    Node node = m_Grid.GetNode(x, z);
-                    node.IsOccupied = !node.IsOccupied;
-                    m_Grid.UpdatePathFinding();
+                    if (node.m_OccupationAvailability == OccupationAvailability.CanOccupy)
+                    {
+                        node.IsOccupied = true;
+                        node.m_OccupationAvailability = OccupationAvailability.CanNotOccupy;
+                        m_Grid.UpdatePathFinding();
+                    }
                 }
             }
             else
