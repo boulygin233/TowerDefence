@@ -71,7 +71,7 @@ namespace Field
             foreach (Node node in m_Grid.EnumerateAllNodes())
             {
                 node.ResetWeight();
-                if (node.m_OccupationAvailability != OccupationAvailability.CanNotOccupy)
+                if (!node.IsOccupied)
                 {
                     node.m_OccupationAvailability = OccupationAvailability.CanOccupy;
                 }

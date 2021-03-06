@@ -130,10 +130,17 @@ namespace Field
                 
                 if (Input.GetMouseButtonDown(0))
                 {
-                    if (node.m_OccupationAvailability == OccupationAvailability.CanOccupy)
+                    if (node.m_OccupationAvailability == OccupationAvailability.CanOccupy || node.IsOccupied)
                     {
-                        node.IsOccupied = true;
-                        node.m_OccupationAvailability = OccupationAvailability.CanNotOccupy;
+                        node.IsOccupied = !node.IsOccupied;
+                        if (node.IsOccupied)
+                        {
+                            node.m_OccupationAvailability = OccupationAvailability.CanNotOccupy;
+                        }
+                        else
+                        {
+                            node.m_OccupationAvailability = OccupationAvailability.CanOccupy;
+                        }
                         m_Grid.UpdatePathFinding();
                     }
                 }
