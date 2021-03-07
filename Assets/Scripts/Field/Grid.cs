@@ -68,7 +68,7 @@ namespace Field
             }
         }
 
-        public void TryOccupyNode(Vector2Int coordinate)
+        public void CheckOccupyability(Vector2Int coordinate)
         {
             Node node = GetNode(coordinate);
             if (node.m_OccupationAvailability == OccupationAvailability.Undefined && !node.IsOccupied)
@@ -83,6 +83,30 @@ namespace Field
                     node.m_OccupationAvailability = OccupationAvailability.CanNotOccupy;
                 }
                 node.IsOccupied = false;
+            }
+        }
+
+        public bool TryOccupy(Vector2Int coordinate)
+        {
+            Node node = GetNode(coordinate);
+            if (node.m_OccupationAvailability == OccupationAvailability.CanOccupy)
+            {
+                node.IsOccupied = true;
+                node.m_OccupationAvailability = OccupationAvailability.CanNotOccupy;
+                UpdatePathFinding();
+                return true;
+            }
+            return false;
+        }
+
+        public void TryDeoccupy(Vector2Int coordinate)
+        {
+            Node node = GetNode(coordinate);
+            if (node.IsOccupied)
+            {
+                node.IsOccupied = false;
+                node.m_OccupationAvailability = OccupationAvailability.CanOccupy;
+                UpdatePathFinding();
             }
         }
         

@@ -24,6 +24,8 @@ namespace Field
         private Grid m_Grid;
         private Vector2Int m_Target;
         private Vector2Int m_Start;
+        
+        private const float SQRT_2 = 1.41f;
 
         public FlowFieldPathfinding(Grid grid, Vector2Int target, Vector2Int start)
         {
@@ -156,25 +158,25 @@ namespace Field
 
             if (hasDownLeftNode)
             {
-                Connection neighbour = new Connection(downLeftCoordinate, Mathf.Sqrt(2f));
+                Connection neighbour = new Connection(downLeftCoordinate, SQRT_2);
                 yield return neighbour;
             }
 
             if (hasDownRightNode)
             {
-                Connection neighbour = new Connection(downRightCoordinate, Mathf.Sqrt(2f));
+                Connection neighbour = new Connection(downRightCoordinate, SQRT_2);
                 yield return neighbour;
             }
 
             if (hasUpLeftNode)
             {
-                Connection neighbour = new Connection(upLeftCoordinate, Mathf.Sqrt(2f));
+                Connection neighbour = new Connection(upLeftCoordinate, SQRT_2);
                 yield return neighbour;
             }
 
             if (hasUpRightNode)
             {
-                Connection neighbour = new Connection(upRightCoordinate, Mathf.Sqrt(2f));
+                Connection neighbour = new Connection(upRightCoordinate, SQRT_2);
                 yield return neighbour;
             }
         }

@@ -118,7 +118,7 @@ namespace Field
                 m_Cursor.transform.position = target;
                 
                 Node node = m_Grid.GetNode(coordinate);
-                m_Grid.TryOccupyNode(coordinate);
+                m_Grid.CheckOccupyability(coordinate);
                 if (node.m_OccupationAvailability == OccupationAvailability.CanOccupy)
                 {
                     CursorRenderer.material.SetColor("_Color", Color.green);
@@ -130,18 +130,9 @@ namespace Field
                 
                 if (Input.GetMouseButtonDown(0))
                 {
-                    if (node.m_OccupationAvailability == OccupationAvailability.CanOccupy || node.IsOccupied)
+                    if (!m_Grid.TryOccupy(coordinate))
                     {
-                        node.IsOccupied = !node.IsOccupied;
-                        if (node.IsOccupied)
-                        {
-                            node.m_OccupationAvailability = OccupationAvailability.CanNotOccupy;
-                        }
-                        else
-                        {
-                            node.m_OccupationAvailability = OccupationAvailability.CanOccupy;
-                        }
-                        m_Grid.UpdatePathFinding();
+                        m_Grid.TryDeoccupy(coordinate);
                     }
                 }
             }
