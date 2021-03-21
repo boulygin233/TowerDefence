@@ -4,7 +4,7 @@ using Grid = Field.Grid;
 
 namespace Enemy
 {
-    public class GridMovementAgent : IMovementAgent
+    public class FlyingMovementAgent : IMovementAgent
     {
         private float m_Speed;
         private Transform m_Transform;
@@ -13,12 +13,12 @@ namespace Enemy
 
         private Node m_TargetNode;
 
-        public GridMovementAgent(float speed, Transform transform, Grid grid)
+        public FlyingMovementAgent(float speed, Transform transform, Grid grid)
         {
             m_Speed = speed;
             m_Transform = transform;
             
-            SetTargetNode(grid.GetStartNode());
+            SetTargetNode(grid.GetTargetNode());
         }
 
         public void TickMovement()
@@ -29,6 +29,7 @@ namespace Enemy
             }
 
             Vector3 target = m_TargetNode.Position;
+            target.y = m_Transform.position.y;
 
             float distance = (target - m_Transform.position).magnitude;
             if (distance < TOLERANCE)

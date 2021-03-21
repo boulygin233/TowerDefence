@@ -10,6 +10,12 @@ namespace Field
         private int m_Width;
         private int m_Height;
 
+        private Vector2Int m_StartCoordinate;
+        private Vector2Int m_TargetCoordinate;
+
+        private Node m_SelectedNode = null;
+        
+
         private FlowFieldPathfinding m_Pathfinding;
 
         public FlowFieldPathfinding Pathfinding => m_Pathfinding;
@@ -22,6 +28,9 @@ namespace Field
         {
             m_Width = width;
             m_Height = height;
+
+            m_StartCoordinate = start;
+            m_TargetCoordinate = target;
 
             m_Nodes = new Node[m_Width, m_Height];
 
@@ -37,6 +46,36 @@ namespace Field
             m_Pathfinding.UpdateField();
         }
 
+        public Node GetStartNode()
+        {
+            return GetNode(m_StartCoordinate);
+        }
+
+        public Node GetTargetNode()
+        {
+            return GetNode(m_TargetCoordinate);
+        }
+
+        public void SelectCoordinate(Vector2Int coordinate)
+        {
+            m_SelectedNode = GetNode(coordinate);
+        }
+
+        public bool HasSelectedNode()
+        {
+            return m_SelectedNode != null;
+        }
+        
+        public void UnselectNode()
+        {
+            m_SelectedNode = null;
+        }
+
+        public Node GetSelectedNode()
+        {
+            return m_SelectedNode;
+        }
+        
         public Node GetNode(Vector2Int coordinate)
         {
             return GetNode(coordinate.x, coordinate.y);
@@ -107,7 +146,7 @@ namespace Field
                 node.IsOccupied = false;
                 node.m_OccupationAvailability = OccupationAvailability.CanOccupy;
                 UpdatePathFinding();
-            }
+            }   
         }
         
         public void UpdatePathFinding()

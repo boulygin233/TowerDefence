@@ -11,7 +11,13 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a136e8b4fda9432cba9d7554c51072a7, type: 3}
   m_Name: Spawn Waves Asset
-  m_EditorClassIdentifier: 
-  EnemyAsset: {fileID: 11400000, guid: 0045e91778226d849b50076bdf992fe1, type: 2}
-  Count: 10
-  TimeBetweenSpawns: 2
+  m_EditorClassIdentifier: Assembly-CSharp:Assets:SpawnWavesAsset
+  SpawnWaves:
+  - EnemyAsset: {fileID: 11400000, guid: 0045e91778226d849b50076bdf992fe1, type: 2}
+    Count: 5
+    TimeBetweenSpawns: 1
+    TimeBeforeStartWave: 1
+  - EnemyAsset: {fileID: 11400000, guid: dac3d3e92311b7141b0a6d991f090d3b, type: 2}
+    Count: 5
+    TimeBetweenSpawns: 1
+    TimeBeforeStartWave: 1

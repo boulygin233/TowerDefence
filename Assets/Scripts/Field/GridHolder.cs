@@ -43,7 +43,8 @@ namespace Field
             m_Grid = new Grid(m_GridWidth, m_GridHeight, m_Offset, m_NodeSize, m_TargetCoordinate, m_StartCoordinate);
         }
 
-        private void Awake()
+        
+        public void CreateGrid()
         {
             m_Camera = Camera.main;
 
@@ -66,7 +67,7 @@ namespace Field
             CursorRenderer.material.SetColor("_Color", Color.green);
         }
 
-        private void Update()
+        public void RaycastInGrid()
         {
             if (m_Grid == null || m_Camera == null)
             {
@@ -101,6 +102,7 @@ namespace Field
             {
                 if (hit.transform != transform && hit.transform != m_Cursor.transform)
                 {   
+                    m_Grid.UnselectNode();
                     m_Cursor.SetActive(false);
                     return;
                 }
@@ -128,6 +130,7 @@ namespace Field
                     CursorRenderer.material.SetColor("_Color", Color.red);
                 }
                 
+                m_Grid.SelectCoordinate(new Vector2Int(x, z));
                 if (Input.GetMouseButtonDown(0))
                 {
                     if (!m_Grid.TryOccupy(coordinate))
@@ -138,6 +141,7 @@ namespace Field
             }
             else
             {
+                m_Grid.UnselectNode();
                 m_Cursor.SetActive(false);
             }
         }
