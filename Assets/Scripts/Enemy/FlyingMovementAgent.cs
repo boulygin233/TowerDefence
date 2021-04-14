@@ -24,7 +24,7 @@ namespace Enemy
             m_Data = data;
             m_Grid = grid;
             
-            SetTargetNode(grid.GetStartNode());
+            SetTargetNode(grid.GetTargetNode());
             SetCurrentNode(m_Grid.GetNodeAtPoint(m_Transform.position));
         }
 
@@ -50,7 +50,7 @@ namespace Enemy
             float distance = (target - position).magnitude;
             if (distance < TOLERANCE)
             {
-                m_TargetNode = m_TargetNode.NextNode;
+                //m_TargetNode = m_TargetNode.NextNode;
                 return;
             }
 

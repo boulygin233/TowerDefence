@@ -46,8 +46,23 @@ namespace TurretSpawn
             TurretData data = new TurretData(asset, node);
             
             data.AttachView(view);
+            Game.Player.TurretSpawn(data);
 
             m_Grid.TryOccupy(node);
         }
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+

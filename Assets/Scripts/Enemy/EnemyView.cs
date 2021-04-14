@@ -21,7 +21,7 @@ namespace Enemy
         {
             if (!m_Data.Asset.IsFlyingEnemy)
             {
-                m_MovementAgent = new GridMovementAgent(5f, transform, grid, m_Data);
+                m_MovementAgent = new GridMovementAgent(1f, transform, grid, m_Data);
             }
             else
             {

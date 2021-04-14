@@ -14,10 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp:Assets:SpawnWavesAsset
   SpawnWaves:
   - EnemyAsset: {fileID: 11400000, guid: 0045e91778226d849b50076bdf992fe1, type: 2}
-    Count: 5
+    Count: 1
     TimeBetweenSpawns: 1
     TimeBeforeStartWave: 1
   - EnemyAsset: {fileID: 11400000, guid: dac3d3e92311b7141b0a6d991f090d3b, type: 2}
-    Count: 5
+    Count: 0
     TimeBetweenSpawns: 1
     TimeBeforeStartWave: 1
