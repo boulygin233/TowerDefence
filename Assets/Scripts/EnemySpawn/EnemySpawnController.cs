@@ -59,7 +59,6 @@ namespace EnemySpawn
         {
             EnemyView view = Object.Instantiate(asset.ViewPrefab);
             Vector3 transformPosition = view.transform.position;
-            Debug.Log(view.transform.position);
             transformPosition.x = m_Grid.GetStartNode().Position.x;
             transformPosition.z = m_Grid.GetStartNode().Position.z;
             view.transform.position = transformPosition;

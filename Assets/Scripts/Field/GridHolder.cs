@@ -57,8 +57,7 @@ namespace Field
                 1f,
                 height * 0.1f);
 
-            m_Offset = transform.position -
-                       (new Vector3(width, 0f, height) * 0.5f);
+            m_Offset = transform.position - (new Vector3(width, 0f, height) * 0.5f);
             m_Grid = new Grid(m_GridWidth, m_GridHeight, m_Offset, m_NodeSize, m_TargetCoordinate, m_StartCoordinate);
             
             m_Cursor = GameObject.CreatePrimitive(PrimitiveType.Sphere);
@@ -131,13 +130,13 @@ namespace Field
                 }
                 
                 m_Grid.SelectCoordinate(new Vector2Int(x, z));
-                if (Input.GetMouseButtonDown(0))
+                /*if (Input.GetMouseButtonDown(0))
                 {
                     if (!m_Grid.TryOccupy(coordinate))
                     {
                         m_Grid.TryDeoccupy(coordinate);
                     }
-                }
+                }*/
             }
             else
             {
@@ -153,7 +152,7 @@ namespace Field
                 return;
             }
 
-            foreach (Node node in m_Grid.EnumerateAllNodes())
+            /*foreach (Node node in m_Grid.EnumerateAllNodes())
             {
                 if (node.NextNode == null)
                 {
@@ -163,7 +162,7 @@ namespace Field
                 if (node.IsOccupied)
                 {
                     Gizmos.color = Color.black;
-                    Gizmos.DrawSphere(node.Position, 0.5f);
+                    Gizmos.DrawSphere(node.Position, 0.2f);
                     continue;
                 }
 
@@ -177,7 +176,7 @@ namespace Field
 
                 Gizmos.DrawLine(start, end);
                 Gizmos.DrawSphere(end, 0.1f);
-            }
+            }*/
             
             Gizmos.color = Color.cyan;
             for (int i = 0; i < m_GridWidth + 1; i++)

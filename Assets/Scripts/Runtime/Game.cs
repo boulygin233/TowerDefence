@@ -16,7 +16,7 @@ namespace Runtime
 
         public static Player Player => s_Player;
         public static AssetRoot AssetRoot => s_AssetRoot;
-        public static LevelAsset CurrentLevel1 => s_CurrentLevel;
+        public static LevelAsset CurrentLevel => s_CurrentLevel;
 
         public static void SetAssetRoot(AssetRoot assetRoot)
         {

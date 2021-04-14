@@ -1,11 +1,12 @@
 using System;
+using Enemy;
 using UnityEngine;
 
 namespace Field
 {
     public class MovementCursor : MonoBehaviour
     {
-        [SerializeField] private MovementAgent m_MovementAgent;
+        //[SerializeField] private MovementAgent m_MovementAgent;
         [SerializeField] private int m_GridWidth;
         [SerializeField] private int m_GridHeight;
         [SerializeField] private GameObject m_Cursor;
@@ -85,7 +86,7 @@ namespace Field
                 if (Input.GetMouseButtonDown(0))
                 {
                     target.y += 0.5f;
-                    m_MovementAgent.SetTarget(target);
+                    //m_MovementAgent.SetTargetNode(target);
                 }
             }
             else
