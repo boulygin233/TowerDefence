@@ -6,7 +6,8 @@ namespace Turret.Weapon.Laser
     public class TurretLaserWeaponAsset : TurretWeaponAssetBase
     {
         public LineRenderer LineRendererPrefab;
-        public float m_MaxDistance;
+        [SerializeField] public float m_MaxDistance;
+        [SerializeField] public float m_Damage;
     
         public override ITurretWeapon GetWeapon(TurretView view)
         {

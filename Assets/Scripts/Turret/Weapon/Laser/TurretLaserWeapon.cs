@@ -15,7 +15,7 @@ namespace Turret.Weapon.Laser
         private TurretLaserWeaponAsset m_Asset;
         private List<Node> m_NodesInCircle;
         private float m_MaxDistance;
-        private float m_Damage = 3f;
+        private float m_Damage;
         [CanBeNull] private EnemyData m_ClosestEnemyData;
 
         public TurretLaserWeapon(TurretLaserWeaponAsset asset, TurretView view)
@@ -23,6 +23,7 @@ namespace Turret.Weapon.Laser
             m_View = view;
             m_Asset = asset;
             m_MaxDistance = m_Asset.m_MaxDistance;
+            m_Damage = m_Asset.m_Damage;
             m_NodesInCircle = Game.Player.Grid.GetNodesInCircle(view.transform.position, m_MaxDistance);
             m_LineRenderer = Object.Instantiate(asset.LineRendererPrefab, m_View.ProjectileOrigin.transform);
         }

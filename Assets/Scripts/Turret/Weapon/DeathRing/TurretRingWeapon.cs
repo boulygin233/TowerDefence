@@ -14,12 +14,13 @@ namespace Turret.Weapon.DeathRing
         private TurretRingWeaponAsset m_Asset;
         private List<Node> m_NodesInCircle;
         private float m_MaxDistance;
-        private float m_Damage = 5f;
+        private float m_Damage;
         public TurretRingWeapon(TurretRingWeaponAsset asset, TurretView view)
         {
             m_View = view;
             m_Asset = asset;
             m_MaxDistance = m_Asset.m_MaxDistance;
+            m_Damage = m_Asset.m_Damage;
             m_NodesInCircle = Game.Player.Grid.GetNodesInCircle(view.transform.position, m_MaxDistance);
         }
 

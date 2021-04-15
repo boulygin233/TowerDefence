@@ -57,6 +57,11 @@ namespace Enemy
             Vector3 delta = dir * (m_Speed * Time.deltaTime);
             m_Transform.Translate(delta);
         }
+        
+        public void Die()
+        {
+            m_CurrentNode.m_EnemyDatas.Remove(m_Data);
+        }
 
         public void SetTargetNode(Node node)
         {
