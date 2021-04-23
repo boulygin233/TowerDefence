@@ -9,6 +9,7 @@ namespace Enemy
         private IMovementAgent m_MovementAgent;
         [SerializeField] private Animator m_Animator;
         private static readonly int DeathAnimationIndex = Animator.StringToHash("Death");
+        private static readonly int ExplodeAnimationIndex = Animator.StringToHash("Explode");
 
         public EnemyData Data => m_Data;
 
@@ -31,21 +32,16 @@ namespace Enemy
             }
         }
 
-        public void AnimateDie()
+        public void Die()
         {
             m_Animator.SetTrigger(DeathAnimationIndex);
+            Destroy(gameObject, 3f);
+        }
+
+        public void ReachedTarget()
+        {
+            m_Animator.SetTrigger(ExplodeAnimationIndex);
+            Destroy(gameObject, 3f);
         }
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-

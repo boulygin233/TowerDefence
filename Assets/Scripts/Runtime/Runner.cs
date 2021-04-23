@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Enemy;
 using EnemySpawn;
 using Field;
+using Main;
 using Turret.Weapon;
 using TurretSpawn;
 using UnityEngine;
@@ -43,7 +44,11 @@ namespace Runtime
                 new EnemySpawnController(Game.CurrentLevel.SpawnWavesAsset, Game.Player.Grid), 
                 new TurretSpawnController(Game.Player.Grid, Game.Player.TurretMarket),
                 new MovementController(),
-                new TurretShootController()
+                new EnemyReachController(Game.Player.Grid),
+                new TurretShootController(),
+                new EnemyDeathController(),
+                new LoseController(),
+                new WinController()
             };
         }
         
@@ -66,6 +71,10 @@ namespace Runtime
         {
             foreach (IController controller in m_Controllers)
             {
+                if (!m_IsRunning)
+                {
+                    return;
+                }
                 try
                 {
                     controller.Tick();

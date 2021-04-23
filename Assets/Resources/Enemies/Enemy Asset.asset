@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b07dd57b4e894c3da3c29be8579cf1e6, type: 3}
+  m_Name: Enemy Asset
+  m_EditorClassIdentifier: 
+  StartHealth: 100
+  Speed: 2
+  IsFlyingEnemy: 0
+  ViewPrefab: {fileID: -5454057788350286484, guid: 5129f82015665e24087ee59be7c73939, type: 3}
+  Damage: 2
+  Reward: 5

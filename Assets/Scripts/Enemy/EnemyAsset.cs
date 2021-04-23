@@ -9,5 +9,8 @@ namespace Enemy
         public float Speed;
         public bool IsFlyingEnemy;
         public EnemyView ViewPrefab;
+
+        public int Damage;
+        public int Reward;
     }
 }

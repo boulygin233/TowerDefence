@@ -69,6 +69,11 @@ namespace Enemy
             m_TargetNode = node;
         }
         
+        public Node GetCurrentNode()
+        {
+            return m_CurrentNode;
+        }
+        
         public void SetCurrentNode(Node node)
         {
             m_CurrentNode = node;

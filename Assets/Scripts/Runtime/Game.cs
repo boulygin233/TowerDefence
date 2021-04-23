@@ -1,5 +1,6 @@
 ﻿using System;
 using Assets;
+using Main;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using Object = UnityEngine.Object;
@@ -38,8 +39,10 @@ namespace Runtime
             }
 
             s_Player = new Player();
-            Runner runner = Object.FindObjectOfType<Runner>();
-            runner.StartRunning();
+            s_Runner = Object.FindObjectOfType<Runner>();
+            s_Runner.StartRunning();
+            
+            SceneManager.LoadScene(AssetRoot.UIScene.name, LoadSceneMode.Additive);
         }
 
         public static void StopPlayer()
